@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import Navigator from './Components/Navigator'
+import CustomerList from './Components/CustomerList';
+import TrainingsList from './Components/TrainingsList';
+import Home from './Components/Home'
+import "react-table/react-table.css";
 import './App.css';
+import Calendar from './Components/Calendar';
 
-function App() {
+class App extends Component {
+  render() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <header className="App-header">
+    <h1>Personal Trainers Co.</h1>
+    <legend>Create and Custom your trainings</legend>
+    </header>
+    <BrowserRouter>
+    <div className="navi">
+      <Navigator />
+      <Switch>
+        <Route exact path="/Home" component={Home} />
+        <Route path="/CustomerList" component={CustomerList} />
+        <Route path="/TrainingsList" component={TrainingsList} />
+        <Route path="/Calendar" component={Calendar} />
+      </Switch>
     </div>
+    </BrowserRouter>
+  </div>
   );
+}
 }
 
 export default App;
