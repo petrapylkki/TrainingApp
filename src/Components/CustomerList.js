@@ -78,14 +78,9 @@ class CustomerList extends Component {
         show: false
       },
       {
+        id : "fullname",
         Header: "Full name",
-        accessor: "fullname",
-        Cell: props => (
-          <div>
-            <span className="firstname">{props.original.firstname} </span>
-            <span className="lastname">{props.original.lastname}</span>
-          </div>
-        )
+        accessor: row => row.firstname + " " + row.lastname
       },
       {
         Header: "Street address",
@@ -103,15 +98,9 @@ class CustomerList extends Component {
         show: false
       },
       {
+        id : "address",
         Header: "Address",
-        accessor: "address",
-        Cell: props => (
-          <div>
-            <span className="streetaddress">{props.original.streetaddress} </span>
-            <span className="postcode">{props.original.postcode} </span>
-            <span className="city">{props.original.city}</span>
-          </div>
-        )
+        accessor: row => row.streetaddress + ", " + row.postcode + ", " + row.city
       },
       {
         Header: "Email",

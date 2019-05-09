@@ -50,7 +50,7 @@ class AddTrainings extends Component {
           <DialogContent>
             <TextField autoFocus margin="dense" name="activity" value={this.state.activity} onChange={this.handleChange} label="Activity" fullWidth/>
             <TextField margin="dense" name="duration" value={this.state.duration} onChange={this.handleChange} label="Duration" fullWidth/>
-            <TextField margin="dense" name="date" value={this.state.date} onChange={this.handleChange} label="Date (YYYY-MM-DD)" fullWidth/>          
+            <TextField type="date" margin="dense" name="date" value={this.state.date} onChange={this.handleChange}  fullWidth/>          
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="default">

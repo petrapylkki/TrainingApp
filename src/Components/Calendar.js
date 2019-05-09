@@ -6,9 +6,9 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 
 const localizer = BigCalendar.momentLocalizer(moment);
 class Calendar extends Component {
-            state = {
-                events: []
-            }
+    state = {
+        events: []
+    }
         
 
  componentDidMount() {
