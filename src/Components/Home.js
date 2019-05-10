@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import Snackbar from '@material-ui/core/Snackbar';
 import 'react-table/react-table.css';
-import AddTrainings from './AddTrainings'
 
 class Home extends Component {
     constructor(props) {

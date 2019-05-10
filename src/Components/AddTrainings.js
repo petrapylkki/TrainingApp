@@ -5,11 +5,12 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Icon } from 'antd';
 
 class AddTrainings extends Component {
   state = {
-    open: false, date: '', duration: '', activity: '', firstname: '', lastname: ''
-  };
+    open: false, date: "", activity: "", duration: "", customer: ""
+  }
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -25,7 +26,7 @@ class AddTrainings extends Component {
 
   saveTraining = () => {
     const newTraining = {
-      date: this.state.date,
+      date: this.state.date + ":00.000",
       duration: this.state.duration,
       activity: this.state.activity,
       customer: this.props.customer
@@ -40,7 +41,7 @@ class AddTrainings extends Component {
       <div>
         <Button style={{margin: 10}} variant="outlined" color="default" onClick={this.handleClickOpen}>
           Add Training
-        </Button>
+          <Icon type="plus-circle" className="icon"/></Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -49,7 +50,7 @@ class AddTrainings extends Component {
           <DialogTitle id="form-dialog-title">Add new training for a customer</DialogTitle>
           <DialogContent>
             <TextField autoFocus margin="dense" name="activity" value={this.state.activity} onChange={this.handleChange} label="Activity" fullWidth/>
-            <TextField margin="dense" name="duration" value={this.state.duration} onChange={this.handleChange} label="Duration" fullWidth/>
+            <TextField margin="dense" name="duration" value={this.state.duration} onChange={this.handleChange} label="Duration (min)" fullWidth/>
             <TextField type="datetime-local" margin="dense" name="date" value={this.state.date} onChange={this.handleChange}  fullWidth/>          
           </DialogContent>
           <DialogActions>

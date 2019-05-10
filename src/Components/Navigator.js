@@ -42,7 +42,7 @@ class Navigator extends Component {
           <div className={`${classOne}`} id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/CustomerList">
+                <Link className="nav-link active" to="/CustomerList">
                   Customers
                 </Link>
               </li>

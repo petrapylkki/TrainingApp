@@ -4,8 +4,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import moment from 'moment';
 import "react-table/react-table.css";
-//import { CSVLink } from "react-csv";
-import AddTraining from './AddTraining';
+import  { Icon } from 'antd';
 
 class TrainingsList extends Component {
   constructor(props) {
@@ -14,26 +13,23 @@ class TrainingsList extends Component {
   }
 
   componentDidMount() {
-    this.loadTrainings();
+    this.fetchTrainings();
   }
 
   // Fetch trainings
-  loadTrainings = () => {
-    fetch ('https://customerrest.herokuapp.com/gettrainings')
-    .then (response => response.json())
-    .then (jsondata => this.setState({trainings: jsondata}))
-    .catch(err => console.error(err));
+  fetchTrainings = () => {
+    fetch('https://customerrest.herokuapp.com/gettrainings')
+    .then(res => res.json())
+    .then(jsondata => this.setState({trainings: jsondata}))
 }
 
   // Delete training
-  deleteTraining = link => {
-    if(window.confirm("Are you sure?")) {
-      fetch('https://customerrest.herokuapp.com/api/trainings/' + link, {method: "DELETE"})
-        .then(response => this.loadTrainings())
-        .then(response => this.setState({open: true, message: 'Training deleted'}))
-        .catch(err => console.error(err));
-    }
-  };
+  deleteTraining = (link) => {
+    fetch('https://customerrest.herokuapp.com/api/trainings/' + link, {method: "DELETE"})
+    .then(res => this.fetchTrainings())
+    .then(res => this.setState({open: true, message: "Training deleted"}))
+    .catch(err => console.error(err))
+}
 
   handleClose = () => {
     this.setState({ open: false });

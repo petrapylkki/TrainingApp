@@ -5,6 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { Icon } from 'antd';
 
 class EditCustomer extends Component {
   state = {
@@ -14,13 +15,13 @@ class EditCustomer extends Component {
   handleClickOpen = () => {
     this.setState({ open: true });
     this.setState({
-      firstname: this.props.customer.firstname,
-      lastname: this.props.customer.lastname,
-      streetaddress: this.props.customer.streetaddress,
-      postcode: this.props.customer.postcode,
-      city: this.props.customer.city,
-      email: this.props.customer.email,
-      phone: this.props.customer.phone
+        firstname: this.props.customer.firstname,
+        lastname: this.props.customer.lastname,
+        streetaddress: this.props.customer.streetaddress,
+        postcode: this.props.customer.postcode,
+        city: this.props.customer.city,
+        email: this.props.customer.email,
+        phone: this.props.customer.phone
     })
   };
 
@@ -34,25 +35,24 @@ class EditCustomer extends Component {
 
   saveCustomer = () => {
     const customer = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
-      streetaddress: this.state.streetaddress,
-      postcode: this.state.postcode,
-      city: this.state.city,
-      email: this.state.email,
-      phone: this.state.phone
+        firstname: this.state.firstname,
+        lastname: this.state.lastname,
+        streetaddress: this.state.streetaddress,
+        postcode: this.state.postcode,
+        city: this.state.city,
+        email: this.state.email,
+        phone: this.state.phone
     }
 
     this.props.editCustomer(this.props.link, customer);
     this.handleClose();
-  }
+}
 
   render() {
     return (
       <div>
-        <Button size="small" variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          EDIT
-        </Button>
+        <Button color="primary" onClick={this.handleClickOpen}>
+          <Icon type="edit" className="icon"/></Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
