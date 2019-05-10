@@ -68,11 +68,11 @@ class EditCustomer extends Component {
             <TextField margin="dense" name="phone" value={this.state.phone} onChange={this.handleChange} label="Phone" fullWidth/>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="default">
-              Cancel
-            </Button>
             <Button onClick={this.saveCustomer} color="default">
               Save
+            </Button>
+            <Button onClick={this.handleClose} color="default">
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>        

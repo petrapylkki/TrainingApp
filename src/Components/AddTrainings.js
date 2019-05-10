@@ -8,7 +8,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 class AddTrainings extends Component {
   state = {
-    open: false, date: '', duration: '', activity: '', customer: ''
+    open: false, date: '', duration: '', activity: '', firstname: '', lastname: ''
   };
 
   handleClickOpen = () => {
@@ -39,7 +39,7 @@ class AddTrainings extends Component {
     return (
       <div>
         <Button style={{margin: 10}} variant="outlined" color="default" onClick={this.handleClickOpen}>
-          New Training
+          Add Training
         </Button>
         <Dialog
           open={this.state.open}
@@ -50,7 +50,7 @@ class AddTrainings extends Component {
           <DialogContent>
             <TextField autoFocus margin="dense" name="activity" value={this.state.activity} onChange={this.handleChange} label="Activity" fullWidth/>
             <TextField margin="dense" name="duration" value={this.state.duration} onChange={this.handleChange} label="Duration" fullWidth/>
-            <TextField type="date" margin="dense" name="date" value={this.state.date} onChange={this.handleChange}  fullWidth/>          
+            <TextField type="datetime-local" margin="dense" name="date" value={this.state.date} onChange={this.handleChange}  fullWidth/>          
           </DialogContent>
           <DialogActions>
             <Button onClick={this.handleClose} color="default">

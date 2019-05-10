@@ -4,6 +4,7 @@ import "react-table/react-table.css";
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Add from './Add';
+import AddTrainings from './AddTrainings';
 import EditCustomer from './EditCustomer';
 //import { CSVLink } from "react-csv";
 
@@ -26,16 +27,16 @@ class CustomerList extends Component {
   };
 
   // Delete customer
-  deleteCustomer = (customerLink) => {
+  deleteCustomer = customerLink => {
     if(window.confirm("Are you sure?")) {
       fetch(customerLink, { method: "DELETE" })
-        .then(res => this.loadCustomers())
-        .then(res => this.setState({open: true, message: 'Customer deleted'}))
+        .then(response => this.loadCustomers())
+        .then(response => this.setState({open: true, message: 'Customer deleted'}))
         .catch(err => console.error(err));
     }
   };
-
-  addCustomer = (newCustomer) => {
+  // Add customer
+  addCustomer = newCustomer => {
     fetch('https://customerrest.herokuapp.com/api/customers', {
       method: 'POST',
       headers: {
@@ -47,7 +48,7 @@ class CustomerList extends Component {
     .then(res => this.setState({open: true, message: 'New customer saved'}))
     .catch(err => console.error(err));    
   }
-
+  // Edit customer
   editCustomer = (link, customer) => {
     fetch(link, {
       method: 'PUT',
@@ -60,8 +61,21 @@ class CustomerList extends Component {
     .then(res => this.setState({open: true, message: 'Changes saved'}))
     .catch(err => console.error(err));    
   }
+  //Add training for a selected customer
+  addTraining = newTraining => {
+    fetch('https://customerrest.herokuapp.com/api/trainings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newTraining)
+    })
+    .then(res => this.loadCustomers())
+    .then(res => this.setState({open:true, message: 'New training added for a customer'}))
+    .catch(err => console.error(err))
+}
 
-  handleClose = (event, reason) => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -79,7 +93,7 @@ class CustomerList extends Component {
       },
       {
         id : "fullname",
-        Header: "Full name",
+        Header: "Name",
         accessor: row => row.firstname + " " + row.lastname
       },
       {
@@ -110,11 +124,19 @@ class CustomerList extends Component {
         accessor: "phone"
       },
       {
+        Header: '',
+        filterable: false,
+        sortable: false,
+        width: 180,
+        accessor: "links.[0].href",
+        Cell: ({value}) => (<AddTrainings addTraining={this.addTraining} loadCustomers={this.loadCustomers} customer = {value}/>)
+      },
+      {
         Header: "",
         filterable: false,
         sortable: false,
         width: 90,
-        accessor: "links.0.href",
+        accessor: "links.[0].href",
         Cell: ({value, row}) => (<EditCustomer editCustomer={this.editCustomer} customer={row} link={value} />)
 
       }, {

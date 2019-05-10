@@ -3,7 +3,6 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Navigator from './Components/Navigator'
 import CustomerList from './Components/CustomerList';
 import TrainingsList from './Components/TrainingsList';
-import Home from './Components/Home'
 import "react-table/react-table.css";
 import './App.css';
 import Calendar from './Components/Calendar';
@@ -20,7 +19,7 @@ class App extends Component {
     <div className="navi">
       <Navigator />
       <Switch>
-        <Route exact path="/Home" component={Home} />
+        <Route exact path="/" component={CustomerList} />
         <Route path="/CustomerList" component={CustomerList} />
         <Route path="/TrainingsList" component={TrainingsList} />
         <Route path="/Calendar" component={Calendar} />

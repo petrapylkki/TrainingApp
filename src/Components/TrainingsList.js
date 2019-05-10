@@ -25,17 +25,16 @@ class TrainingsList extends Component {
 }
 
   // Delete training
-  deleteTraining = (trainingLink) => {
+  deleteTraining = link => {
     if(window.confirm("Are you sure?")) {
-      fetch(trainingLink, 
-        { method: "DELETE" })
-        .then(res => this.loadTrainings())
-        .then(res => this.setState({open: true, message: 'Training deleted'}))
+      fetch('https://customerrest.herokuapp.com/api/trainings/' + link, {method: "DELETE"})
+        .then(response => this.loadTrainings())
+        .then(response => this.setState({open: true, message: 'Training deleted'}))
         .catch(err => console.error(err));
     }
   };
 
-  handleClose = (event, reason) => {
+  handleClose = () => {
     this.setState({ open: false });
   };
 
@@ -44,10 +43,13 @@ class TrainingsList extends Component {
       {
         Header: "Date",
         accessor: "date",
-        Cell: props => moment.utc(props.date).format('L')
+        Cell: props => (
+          <span>{moment.utc(props.value).format('DD.MM.YYYY HH:mm')}
+          </span>
+        )
       },
       {
-        Header: "Duration",
+        Header: "Duration (min)",
         accessor: "duration"
       },
       {
@@ -55,19 +57,16 @@ class TrainingsList extends Component {
         accessor: "activity"
       },
       {
-        Header: "First name",
-        accessor: "customer.firstname"
-      },
-      {
-        Header: "Last name",
-        accessor: "customer.lastname"
+        id: "Customer",
+        Header: "Customer",
+        accessor: row => row.customer.firstname + ' ' + row.customer.lastname
       },
       {
         Header: "",
         filterable: false,
         sortable: false,
         width: 90,
-        accessor: "links[0].href",
+        accessor: "id",
         Cell: ({ value }) => (
           <Button variant="outlined" color="secondary" size="small" onClick={() => this.deleteTraining(value)}>Delete</Button>
         )
