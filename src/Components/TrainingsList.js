@@ -5,6 +5,7 @@ import Snackbar from '@material-ui/core/Snackbar';
 import moment from 'moment';
 import "react-table/react-table.css";
 //import { CSVLink } from "react-csv";
+import AddTraining from './AddTraining';
 
 class TrainingsList extends Component {
   constructor(props) {
