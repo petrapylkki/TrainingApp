@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
-import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import moment from 'moment';
 import "react-table/react-table.css";
-import  { Icon } from 'antd';
+import TrainingDialog from './TrainingDialog';
 
 class TrainingsList extends Component {
   constructor(props) {
@@ -62,10 +61,11 @@ class TrainingsList extends Component {
         Header: "",
         filterable: false,
         sortable: false,
-        width: 90,
+        width: 70,
         accessor: "id",
         Cell: ({ value }) => (
-          <Button variant="outlined" color="secondary" size="small" onClick={() => this.deleteTraining(value)}>Delete</Button>
+          <TrainingDialog color="secondary" deleteAction={() => this.deleteCustomer(value)}></TrainingDialog>
+          // <Button size="small" color="secondary" onClick={() => this.deleteTraining(value)}><Icon type="delete" className="icon"/></Button>
         )
       }
     ];
@@ -76,7 +76,7 @@ class TrainingsList extends Component {
           filterable={true}
           data={this.state.trainings}
           columns={columns}
-          defaultPageSize={15}
+          defaultPageSize={10}
         />
         <Snackbar
           anchorOrigin={{

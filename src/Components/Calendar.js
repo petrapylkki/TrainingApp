@@ -47,7 +47,7 @@ render() {
           step={20}
           showMultiDayTimes
           defaultDate={new Date()}
-          style={{ height: "800px", margin: "20px 40px" }}
+          style={{ height: "800px", margin: "5px 5px 15px" }}
         />
            
             </div>

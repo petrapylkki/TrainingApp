@@ -13,10 +13,9 @@ class App extends Component {
     <div className="App">
     <header className="App-header">
     <h1>Personal Trainers Co.</h1>
-    <legend>Create and Custom your trainings</legend>
+    <legend>Create and Custom your Trainings</legend>
     </header>
     <BrowserRouter>
-    <div className="navi">
       <Navigator />
       <Switch>
         <Route exact path="/" component={CustomerList} />
@@ -24,7 +23,6 @@ class App extends Component {
         <Route path="/TrainingsList" component={TrainingsList} />
         <Route path="/Calendar" component={Calendar} />
       </Switch>
-    </div>
     </BrowserRouter>
   </div>
   );

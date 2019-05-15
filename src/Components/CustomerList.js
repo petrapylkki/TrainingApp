@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import ReactTable from "react-table";
 import "react-table/react-table.css";
-import Button from '@material-ui/core/Button';
+//import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import Add from './Add';
 import AddTrainings from './AddTrainings';
 import EditCustomer from './EditCustomer';
-import { Icon } from 'antd';
+import CustomerDialog from './CustomerDialog';
 
 class CustomerList extends Component {
 
@@ -144,14 +144,15 @@ handleClose = () => {
         width: 90,
         accessor: "links.0.href",
         Cell: ({value}) => (
-          <Button color="secondary" onClick={() => this.deleteCustomer(value)}><Icon type="delete" className="icon"/></Button>
+          <CustomerDialog color="secondary" deleteAction={() => this.deleteCustomer(value)}></CustomerDialog>
+          // alla toiminto ilman dialogia
+          // <Button color="secondary" onClick={() => this.deleteCustomer(value)}><Icon type="delete" className="icon"/></Button>
         )
       }
     ]
 
     return (
       <div>
-        <h3>Customers</h3>
         <Add addCustomer={this.addCustomer} />
         <ReactTable
           filterable={true}

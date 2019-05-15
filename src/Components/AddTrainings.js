@@ -39,9 +39,9 @@ class AddTrainings extends Component {
   render() {
     return (
       <div>
-        <Button style={{margin: 10}} variant="outlined" color="default" onClick={this.handleClickOpen}>
+        <Button className="button" variant="outlined" color="default" onClick={this.handleClickOpen}>
           Add Training
-          <Icon type="plus-circle" className="icon"/></Button>
+          <Icon type="plus-circle" className="iconnav"/></Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -54,11 +54,11 @@ class AddTrainings extends Component {
             <TextField type="datetime-local" margin="dense" name="date" value={this.state.date} onChange={this.handleChange}  fullWidth/>          
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="default">
-              Cancel
-            </Button>
-            <Button onClick={this.saveTraining} color="default">
+            <Button onClick={this.saveTraining} color="primary">
               Save
+            </Button>
+            <Button onClick={this.handleClose} color="secondary">
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>        
